@@ -1,0 +1,15 @@
+.details-container{
+    display: flex;
+    flex-direction: row;
+}
+.labels{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    color: gray;
+}
+.values{
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+}

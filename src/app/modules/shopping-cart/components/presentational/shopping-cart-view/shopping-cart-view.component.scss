@@ -1,0 +1,17 @@
+.table{
+    width: fit-content;
+    border: 2px solid gray;
+}
+th,td{
+    width:200px;
+    text-align: left;
+    border-right: 1px solid gray;
+    height: 30px;
+}
+th:last-child,td:last-child{
+    width:50px;
+    border-right: none;
+}
+td{
+    border-top: 1px solid gray;
+}

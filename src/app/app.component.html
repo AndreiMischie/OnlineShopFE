@@ -1,0 +1,4 @@
+<a routerLink="/shopping-cart">Shopping Cart</a>
+<button (click)="getProducts()">get</button>
+<p *ngFor="let product of products | async">{{ product | json }}</p>
+<router-outlet></router-outlet>
