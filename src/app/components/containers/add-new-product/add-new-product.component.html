@@ -1,0 +1,13 @@
+<form [formGroup]="productForm">
+  <label for="name">Product Name: </label>
+  <input id="name" type="text" formControlName="name" />
+  <label for="description">Product Description: </label>
+  <input id="description" type="text" formControlName="description" />
+  <label for="price">Price: </label>
+  <input id="price" type="number" formControlName="price" />
+  <label for="weight">Weight: </label>
+  <input id="weight" type="number" formControlName="weight" />
+  <button type="submit" (click)="handlePostProduct()" class="btn">
+    Submit
+  </button>
+</form>

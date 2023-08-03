@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+
+app-root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.btn{
+    background-color:rgba(95, 121, 61, 0.753);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: none;
+}
+
+.btn:hover{
+    background-color:rgb(95, 121, 61);
+    cursor: pointer;
+}
+
+table{
+    width: fit-content;
+    border: none;
+}
+th,td{
+    width:200px;
+    text-align: left;
+    border-right: 1px solid gray;
+    height: 30px;
+    padding-left: 1rem;
+}
+th:last-child,td:last-child{
+    width:50px;
+    border-right: none;
+}
+td{
+    border-top: 1px solid gray;
+}
+
+th{
+    color: olivedrab;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+input{
+    margin-bottom: 0.5rem;
+}

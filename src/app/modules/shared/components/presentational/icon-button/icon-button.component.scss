@@ -1,0 +1,17 @@
+button{
+    border: none;
+    background-color: transparent;
+    font-weight: 700;
+    font-size: large;
+    padding: 0;
+}
+.delete{
+    color: rgba(167, 10, 10, 0.651);
+}
+.see-details{
+    color:rgb(131, 190, 28);
+}
+
+button:hover{
+    cursor: pointer;
+}

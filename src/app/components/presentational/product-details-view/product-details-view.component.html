@@ -1,0 +1,21 @@
+<div *ngIf="productDetails | async as product">
+  <div class="details-container">
+    <div class="labels">
+      <p>Name:</p>
+      <p>Category:</p>
+      <p>Price:</p>
+      <p>Description:</p>
+      <button (click)="addToCart(product.id)" class="btn">Add to cart</button>
+    </div>
+    <div class="values">
+      <p>{{ product.name }}</p>
+      <p>{{ product.productCategoryName }}</p>
+      <p>{{ product.price }}RON</p>
+      <p>{{ product.description }}</p>
+      <a [routerLink]="['../edit/', product.id]"
+        ><button class="btn">Edit</button></a
+      >
+      <button class="btn" (click)="handleDelete(product.id)">Delete</button>
+    </div>
+  </div>
+</div>
