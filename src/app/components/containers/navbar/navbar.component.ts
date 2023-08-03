@@ -8,6 +8,15 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class NavbarComponent {
   constructor(private authService: AuthService) {}
+
+  isCustomer?: boolean;
+  isLoggedIn?: boolean;
+
+  ngOnInit() {
+    this.authService.isCostumer.subscribe((x) => (this.isCustomer = x));
+    this.authService.isLoggedIn$.subscribe((x) => (this.isLoggedIn = x));
+  }
+
   handleLogout() {
     this.authService.logout();
   }

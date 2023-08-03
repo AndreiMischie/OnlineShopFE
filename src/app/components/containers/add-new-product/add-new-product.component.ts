@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Paths } from 'src/app/app-routing.module';
 import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
@@ -10,7 +12,8 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class AddNewProductComponent {
   constructor(
     private fb: FormBuilder,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) {}
 
   productForm!: FormGroup;
@@ -33,5 +36,6 @@ export class AddNewProductComponent {
       this.productForm.value.price,
       this.productForm.value.weight
     );
+    this.router.navigate([Paths.PRODUCT_LIST]);
   }
 }

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Router } from '@angular/router';
 import { Paths } from 'src/app/app-routing.module';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-product-details-view',
@@ -18,8 +19,21 @@ export class ProductDetailsViewComponent {
   constructor(
     private service: ShoppingCartService,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
+
+  isAdmin?: boolean;
+  isCustomer?: boolean;
+
+  ngOnInit() {
+    return this.getRoles();
+  }
+
+  getRoles() {
+    this.authService.isCostumer.subscribe((b) => (this.isCustomer = b));
+    this.authService.isAdmin.subscribe((b) => (this.isAdmin = b));
+  }
 
   addToCart(id: string) {
     this.service.addProduct(id);

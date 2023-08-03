@@ -7,8 +7,10 @@ import { PageNotFoundComponent } from './components/containers/page-not-found/pa
 import { AddNewProductComponent } from './components/containers/add-new-product/add-new-product.component';
 import { EditProductComponent } from './components/containers/edit-product/edit-product.component';
 import { LoginComponent } from './components/containers/login/login.component';
-import { isAuthenticatedGuard } from './is-authenticated.guard';
 import { ProfileDetailsComponent } from './components/containers/profile-details/profile-details.component';
+import { isAuthenticatedGuard } from './guards/auth/is-authenticated.guard';
+import { isCustomerGuard } from './guards/customer/is-customer.guard';
+import { isAdminGuard } from './guards/admin/is-admin.guard';
 
 export const Paths = {
   LOGIN: 'login',
@@ -23,7 +25,10 @@ export const Paths = {
 };
 
 const routes: Routes = [
-  { path: Paths.LOGIN, component: LoginComponent },
+  {
+    path: Paths.LOGIN,
+    component: LoginComponent,
+  },
   { path: Paths.HOMEPAGE, redirectTo: Paths.LOGIN, pathMatch: 'full' },
   {
     path: Paths.PRODUCT_LIST,
@@ -38,12 +43,12 @@ const routes: Routes = [
   {
     path: Paths.ADD_PRODUCT_FORM,
     component: AddNewProductComponent,
-    canActivate: [isAuthenticatedGuard],
+    canActivate: [isAdminGuard],
   },
   {
     path: Paths.EDIT_PRODUCT_FORM,
     component: EditProductComponent,
-    canActivate: [isAuthenticatedGuard],
+    canActivate: [isAdminGuard],
   },
   {
     path: Paths.PROFILE,
@@ -53,7 +58,7 @@ const routes: Routes = [
   {
     path: Paths.SHOPPING_CART,
     component: ShoppingCartComponent,
-    canActivate: [isAuthenticatedGuard],
+    canActivate: [isCustomerGuard],
   },
   { path: Paths.NOTFOUND, pathMatch: 'full', component: PageNotFoundComponent },
 ];

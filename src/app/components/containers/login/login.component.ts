@@ -31,7 +31,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService
         .login(this.loginForm.value)
-        .subscribe(() => this.router.navigate([Paths.PRODUCT_LIST]));
+        .subscribe(() => this.authService.getProfileData());
     }
   }
 }

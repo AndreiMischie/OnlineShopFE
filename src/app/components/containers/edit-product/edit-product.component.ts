@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Product } from 'src/app/modules/shared/types/types';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Paths } from 'src/app/app-routing.module';
 
 @Component({
   selector: 'app-edit-product',
@@ -13,7 +14,8 @@ export class EditProductComponent {
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   product?: Product = this.productService.selectedProduct;
@@ -44,5 +46,6 @@ export class EditProductComponent {
       this.productForm.value.price,
       this.productForm.value.weight
     );
+    this.router.navigate([Paths.PRODUCT_LIST]);
   }
 }

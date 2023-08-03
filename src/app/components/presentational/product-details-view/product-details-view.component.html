@@ -5,17 +5,21 @@
       <p>Category:</p>
       <p>Price:</p>
       <p>Description:</p>
-      <button (click)="addToCart(product.id)" class="btn">Add to cart</button>
+      <button (click)="addToCart(product.id)" class="btn" *ngIf="isCustomer">
+        Add to cart
+      </button>
     </div>
     <div class="values">
       <p>{{ product.name }}</p>
       <p>{{ product.productCategoryName }}</p>
       <p>{{ product.price }}RON</p>
       <p>{{ product.description }}</p>
-      <a [routerLink]="['../edit/', product.id]"
+      <a [routerLink]="['../edit/', product.id]" *ngIf="isAdmin"
         ><button class="btn">Edit</button></a
       >
-      <button class="btn" (click)="handleDelete(product.id)">Delete</button>
+      <button class="btn" (click)="handleDelete(product.id)" *ngIf="isAdmin">
+        Delete
+      </button>
     </div>
   </div>
 </div>
