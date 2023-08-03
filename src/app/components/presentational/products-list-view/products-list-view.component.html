@@ -1,5 +1,4 @@
 <div *ngIf="productsList">
-  <h1>Products:</h1>
   <table class="table">
     <tr>
       <th>Category</th>
@@ -18,5 +17,8 @@
       </td>
     </tr>
   </table>
+  <a *ngIf="" [routerLink]="'../product-list/add'">
+    <button class="btn">Add New Product</button>
+  </a>
 </div>
 <router-outlet></router-outlet>

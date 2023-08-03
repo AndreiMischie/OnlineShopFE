@@ -1,0 +1,24 @@
+<form [formGroup]="productForm">
+  <label for="name">Product Name: </label>
+  <input id="name" type="text" required minlength="3" formControlName="name" />
+  <label for="description">Product Description: </label>
+  <input
+    id="description"
+    type="text"
+    required
+    minlength="5"
+    formControlName="description"
+  />
+  <label for="price">Price: </label>
+  <input id="price" type="number" formControlName="price" />
+  <label for="weight">Weight: </label>
+  <input id="weight" type="number" formControlName="weight" />
+  <div class="btn-group">
+    <button type="submit" (click)="handleEditProduct()" class="btn">
+      Save
+    </button>
+    <a [routerLink]="['../..', routeId]">
+      <button class="btn">Cancel</button>
+    </a>
+  </div>
+</form>

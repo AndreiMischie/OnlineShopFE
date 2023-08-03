@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
+import { AuthService } from './services/auth/auth.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  products: any;
-  constructor(private http: HttpClient) {}
+  constructor(public authService: AuthService) {}
+
   title = 'online-shop';
-  getProducts() {
-    this.products = this.http.get(environment.apiUrl + '/products');
-    console.log(this.products);
-  }
 }

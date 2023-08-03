@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Products } from 'src/app/modules/shared/types/product.types';
+import { ShoppingCartProductFull } from 'src/app/modules/shared/types/types';
 import { ShoppingCartService } from '../../../services/shopping-cart.service';
+
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-cart-view',
@@ -9,10 +11,16 @@ import { ShoppingCartService } from '../../../services/shopping-cart.service';
   providers: [ShoppingCartService],
 })
 export class ShoppingCartViewComponent {
-  @Input() products: Products[] | undefined;
+  @Input() products!: Observable<ShoppingCartProductFull[] | undefined>;
+
   @Output() itemDeleteEvent = new EventEmitter<string>();
-  constructor() {}
-  handleDelete(id: string) {
+
+  constructor(private shoppingCartService: ShoppingCartService) {}
+
+  handleDelete(id: string | undefined) {
     this.itemDeleteEvent.emit(id);
+  }
+  handlePlaceOrder() {
+    this.shoppingCartService.placeOrder();
   }
 }

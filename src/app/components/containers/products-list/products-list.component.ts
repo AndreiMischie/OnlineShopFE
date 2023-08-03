@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
 import { Observable } from 'rxjs';
-import { Products } from 'src/app/modules/shared/types/product.types';
+import { Product } from 'src/app/modules/shared/types/types';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-products-list',
@@ -10,14 +9,11 @@ import { Products } from 'src/app/modules/shared/types/product.types';
   styleUrls: ['./products-list.component.scss'],
 })
 export class ProductsListComponent {
-  productsList: Observable<Products[]> | undefined;
-  constructor(private http: HttpClient) {}
-  getProducts(): void {
-    this.productsList = this.http.get<Products[]>(
-      environment.apiUrl + '/products'
-    );
-  }
+  productsList?: Observable<Product[]>;
+
+  constructor(private productService: ProductService) {}
+
   ngOnInit() {
-    return this.getProducts();
+    return (this.productsList = this.productService.getProducts());
   }
 }

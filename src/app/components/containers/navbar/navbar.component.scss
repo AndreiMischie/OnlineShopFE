@@ -1,0 +1,22 @@
+.nav{
+    background-color: darkolivegreen;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: calc(100vw - 4rem);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+a{
+    text-decoration: none;
+    color: white;
+    margin: 1rem;
+}
+a:hover{
+    color: rgb(92, 184, 0);
+}

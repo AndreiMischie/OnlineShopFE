@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { Products } from 'src/app/modules/shared/types/product.types';
+import { Component } from '@angular/core';
+import { Product } from 'src/app/modules/shared/types/types';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
 import { Observable } from 'rxjs';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -11,28 +10,20 @@ import { Observable } from 'rxjs';
   styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent {
-  productDetails: Observable<Products> | undefined;
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  productDetails?: Observable<Product>;
 
-  nullToUndefined(text: string | null): string | undefined {
-    if (text == null) {
-      return undefined;
-    }
-    return text;
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
 
   getProduct(id: string | null): void {
-    if (id != null) {
-      let params = new HttpParams().set('id', id);
-      this.productDetails = this.http.get<Products>(
-        environment.apiUrl + '/products',
-        { params }
-      );
-    }
+    this.productDetails = this.productService.getProduct(id);
   }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
+
     this.getProduct(id);
   }
 }

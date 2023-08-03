@@ -1,20 +1,21 @@
-<div *ngIf="productDetails">
-  <div>
-    <!-- <h1>Product:{{ productDetails.name }}</h1> -->
-  </div>
+<div *ngIf="productDetails | async as product">
   <div class="details-container">
     <div class="labels">
       <p>Name:</p>
       <p>Category:</p>
       <p>Price:</p>
       <p>Description:</p>
-      <!-- <button (click)="addToCart(productDetails)">Add to cart</button> -->
+      <button (click)="addToCart(product.id)" class="btn">Add to cart</button>
     </div>
     <div class="values">
-      <!-- <p>{{ productDetails.name }}</p>
-      <p>{{ productDetails.productCategoryName }}</p>
-      <p>{{ productDetails.price }}RON</p>
-      <p>{{ productDetails.description }}</p> -->
+      <p>{{ product.name }}</p>
+      <p>{{ product.productCategoryName }}</p>
+      <p>{{ product.price }}RON</p>
+      <p>{{ product.description }}</p>
+      <a [routerLink]="['../edit/', product.id]"
+        ><button class="btn">Edit</button></a
+      >
+      <button class="btn" (click)="handleDelete(product.id)">Delete</button>
     </div>
   </div>
 </div>

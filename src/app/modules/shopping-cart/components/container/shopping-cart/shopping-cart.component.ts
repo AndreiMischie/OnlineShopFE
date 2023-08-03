@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ShoppingCartService } from '../../../services/shopping-cart.service';
+import { ShoppingCartProductFull } from 'src/app/modules/shared/types/types';
+import { ProductService } from 'src/app/services/product/product.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -8,13 +11,20 @@ import { ShoppingCartService } from '../../../services/shopping-cart.service';
   providers: [ShoppingCartService],
 })
 export class ShoppingCartComponent {
-  constructor(private service: ShoppingCartService) {}
-  products = this.service.getProductsFromCart();
+  constructor(
+    private shoppingCartService: ShoppingCartService,
+    private productService: ProductService
+  ) {}
+
+  products!: Observable<ShoppingCartProductFull[] | undefined>;
+
   handleDelete(id: string): void {
-    this.service.deleteProductFromCart(id);
-    this.products = this.service.getProductsFromCart();
+    this.shoppingCartService.deleteProduct(id);
+
+    this.products = this.shoppingCartService.getProductDetails();
   }
+
   ngOnInit() {
-    return (this.products = this.service.getProductsFromCart());
+    return (this.products = this.shoppingCartService.getProductDetails());
   }
 }
