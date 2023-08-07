@@ -17,7 +17,7 @@
       </td>
     </tr>
   </table>
-  <a *ngIf="" [routerLink]="'../product-list/add'">
+  <a *ngIf="isAdmin" [routerLink]="'../product-list/add'">
     <button class="btn">Add New Product</button>
   </a>
 </div>

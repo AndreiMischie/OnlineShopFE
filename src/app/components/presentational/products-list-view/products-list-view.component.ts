@@ -14,7 +14,11 @@ export class ProductsListViewComponent {
 
   constructor(private authService: AuthService) {}
 
-  profileData!: Observable<ProfileData>;
+  isAdmin?: boolean;
+
+  ngOnInit() {
+    this.authService.isAdmin.subscribe((b) => (this.isAdmin = b));
+  }
 
   paths = Paths;
 }
